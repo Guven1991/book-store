@@ -3,6 +3,6 @@ package com.guven.bookstore.model;
 public enum Role {
 
     USER,
-    ADMİN,
+    ADMIN,
     SYSTEM_MANAGER
 }
