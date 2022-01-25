@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -17,6 +18,7 @@ import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Component
 public class JwtProvider implements IJwtProvider {
 
     @Value("app.jwt.secret")
@@ -45,6 +47,7 @@ public class JwtProvider implements IJwtProvider {
     public Authentication getAuthentication(HttpServletRequest request) {
 
         Claims claims = extractClaims(request);
+
         if(claims == null){
             return null;
         }
@@ -84,6 +87,8 @@ public class JwtProvider implements IJwtProvider {
     }
 
     private Claims extractClaims(HttpServletRequest request) {
+
+
         String token = SecurityUtils.extractAuthTokenFromRequest(request);
 
         if (token == null) {
