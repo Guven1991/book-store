@@ -1,6 +1,8 @@
 package com.guven.bookstore.security;
 
+import com.guven.bookstore.model.Role;
 import com.guven.bookstore.model.User;
+import com.guven.bookstore.util.SecurityUtils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,6 +25,16 @@ public class UserPrincipal implements UserDetails {
     transient private User user;
     private Set<GrantedAuthority> authorities;
 
+
+    public static  UserPrincipal createSuperUser(){
+        Set<GrantedAuthority> authorities = Set.of(SecurityUtils.convertToAuthority(Role.SYSTEM_MANAGER.name()));
+
+        return UserPrincipal.builder()
+                .id(-1L)
+                .username("system-administrator")
+                .authorities(authorities)
+                .build();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
