@@ -1,5 +1,5 @@
 {
-  "name": "book-Store",
+  "name": "guven-book-store-app",
   "buildpacks": [
     {
       "url" : "heroku/gradle"

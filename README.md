@@ -1,4 +1,4 @@
-# Spring Boot Seller
+# book store
 
 ### Endpoints
 
